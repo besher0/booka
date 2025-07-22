@@ -71,6 +71,14 @@ export class TableBookingService {
   //   }
   //   return booking;
   // }
+  
+    async findOne(id: number): Promise<TableBooking> {
+    const booking = await this.tableBookingRepository.findOne({ where: { id }});
+    if (!booking) {
+      throw new NotFoundException(`Booking with ID ${id} not found.`);
+    }
+    return booking;
+  } 
 
 // src/table-booking/table-booking.service.ts
 

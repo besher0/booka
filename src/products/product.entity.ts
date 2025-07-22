@@ -1,38 +1,55 @@
 /* eslint-disable prettier/prettier */
-
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne,OneToMany,  } from 'typeorm';
+/* eslint-disable no-irregular-whitespace */
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany, JoinColumn } from 'typeorm'; // أضف JoinColumn
 import { ProductType } from '../utils/enum/enums';
-import { Cafe } from '../cafe/cafe.entity'; // **استيراد كيان الكافيه**
-import { Love } from '../love/love.entity'; 
+import { Cafe } from '../cafe/cafe.entity';
+import { Love } from '../love/love.entity';
+import { CartItem } from '../cart/cart-item.entity';
+import { OrderItem } from '../order/order-item.entity';
+import { Image } from '../uploads/image.entity'; // <--- استيراد كيان Image
 
 
-@Entity('products') // اسم الجدول في قاعدة البيانات
+@Entity('products')
 export class Product {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn()
+  id: number;
 
-  @Column({ type: 'varchar', length: 255, nullable: false })
-  name: string; // اسم المنتج (إلزامي)
+  @Column({ type: 'varchar', length: 255, nullable: false })
+  name: string;
 
-  @Column({ type: 'varchar', length: 500, nullable: true })
-  imageUrl?: string; // رابط الصورة (اختياري)
+  // @Column({ type: 'varchar', length: 500, nullable: true }) // <--- حذف هذا الحقل
+  // imageUrl?: string; // <--- حذف هذا الحقل
 
-  @Column({ type: 'float', nullable: false })
-  price: number; // السعر (إلزامي، يمكن أن يكون عشرياً)
+  // علاقة الصورة: ManyToOne مع Image entity
+  @ManyToOne(() => Image, image => image.products, { nullable: true, onDelete: 'SET NULL' }) // onDelete: 'SET NULL' إذا حذفت الصورة الأصلية
+  @JoinColumn({ name: 'imageId' }) // المفتاح الأجنبي في جدول 'products'
+  productImage: Image | null; // <--- هذا هو كيان الصورة للمنتج
 
-  @Column({ type: 'enum', enum: ProductType, nullable: false })
-  type: ProductType; // نوع المنتج (مشروبات أو مأكولات، إلزامي)
+  @Column({ nullable: true })
+  imageId: number | null; // <--- المفتاح الأجنبي لـ productImage
 
-  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
-  createdAt: Date; // تاريخ الإنشاء
 
-  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP', onUpdate: 'CURRENT_TIMESTAMP' })
-  updatedAt: Date; // تاريخ آخر تحديث
+  @Column({ type: 'float', nullable: false })
+  price: number;
 
-  @ManyToOne(() => Cafe, (cafe) => cafe.products)
-  cafe: Cafe; // هذا هو الحقل الذي سيحتوي على كائن الكافيه المرتبط
+  @Column({ type: 'enum', enum: ProductType, nullable: false })
+  type: ProductType;
 
- @OneToMany(() =>  Love, (love) => love.product)
-  loves: Love[]; // هنا يبقى النوع Love[]
-  
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  createdAt: Date;
+
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP', onUpdate: 'CURRENT_TIMESTAMP' })
+  updatedAt: Date;
+
+  @ManyToOne(() => Cafe, (cafe) => cafe.products)
+  cafe: Cafe;
+
+  @OneToMany(() => Love, (love) => love.product)
+  loves: Love[];
+
+  @OneToMany(() => CartItem, (cartItem) => cartItem.product)
+  cartItems: CartItem[];
+
+  @OneToMany(() => OrderItem, (orderItem) => orderItem.product)
+  orderItems: OrderItem[];
 }

@@ -1,29 +1,59 @@
 /* eslint-disable prettier/prettier */
-// src/product/dto/create-product.dto.ts
-import { IsString, IsNotEmpty, IsNumber, IsUrl, IsOptional, IsEnum, Min } from 'class-validator';
+/* eslint-disable no-irregular-whitespace */
+import { IsString, IsNotEmpty, IsNumber, IsEnum, Min } from 'class-validator';
+import { ApiProperty } from '@nestjs/swagger';
 import { ProductType } from 'src/utils/enum/enums';
+import { Type } from 'class-transformer';
 
 export class CreateProductDto {
-  @IsString()
-  @IsNotEmpty()
-  name: string;
+  @ApiProperty({
+    example: 'قهوة لاتيه مثلجة',
+    description: 'اسم المنتج',
+    type: String,
+  })
+  @IsString()
+  @IsNotEmpty()
+  name: string;
 
-  @IsOptional()
-  @IsUrl()
-  imageUrl?: string;
+  // @ApiProperty({ // <--- حذف هذا الحقل
+  //     example: 'https://example.com/latte.jpg',
+  //     description: 'رابط URL لصورة المنتج (اختياري)',
+  //     required: false,
+  //     type: String,
+  //     format: 'url',
+  // })
+  // @IsOptional()
+  // @IsUrl()
+  // imageUrl?: string; // <--- حذف هذا الحقل
 
+  @ApiProperty({
+    example: 5.50,
+    description: 'سعر المنتج',
+    type: Number,
+    minimum: 0,
+  })
+  @IsNumber()
+  @IsNotEmpty()
+  @Min(0)
+  @Type(() => Number)
+  price: number;
 
-  @IsNumber()
-  @IsNotEmpty()
-  @Min(0)
-  price: number;
+  @ApiProperty({
+    example: 'مشروب',
+    description: 'نوع المنتج (مشروب أو مأكولات)',
+    enum: ProductType,
+  })
+  @IsEnum(ProductType)
+  @IsNotEmpty()
+  type: ProductType;
 
-  @IsEnum(ProductType)
-  @IsNotEmpty()
-  type: ProductType;
-
-  // **معرف الكافيه الذي ينتمي إليه المنتج (إلزامي عند الإنشاء)**
-  @IsNumber()
-  @IsNotEmpty()
-  cafeId: number;
+  @ApiProperty({
+    example: 1,
+    description: 'معرف الكافيه الذي ينتمي إليه المنتج',
+    type: Number,
+  })
+  @IsNumber()
+  @IsNotEmpty()
+  @Type(() => Number)
+  cafeId: number;
 }
