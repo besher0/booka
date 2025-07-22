@@ -6,7 +6,7 @@ import { DeviceService, AdminRegisterDeviceDto } from './device.service'; // ا�
 import { AuthGuard } from '../users/guards/auth.guard';
 import { CurrentUser } from '../users/decorators/current-user.decorator';
 import { User } from '../users/user.entity';
-import { UserType } from '../utils/enums'; // لليتحقق من صلاحيات المسؤول
+import { UserType } from '../utils/enum/enums'; // لليتحقق من صلاحيات المسؤول
 import { Device } from './device.entity';
 
 @Controller('devices')

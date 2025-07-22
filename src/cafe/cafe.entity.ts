@@ -13,6 +13,7 @@ import {CURRENT_TIMESTAMP} from 'src/utils/constants'
 import { Product } from 'src/products/product.entity';
 import { Love } from 'src/love/love.entity';
 import { CafeImage } from './gallary.entity';
+import { TableBooking } from 'src/table-booking/table-booking.entity';
 
 @Entity({name:'cafe'})
 export class Cafe{
@@ -61,4 +62,8 @@ export class Cafe{
 
    @OneToMany(() => Love, (love) => love.cafe)
   loves: Love[];
+
+    // **إضافة علاقة One-to-Many مع TableBookings**
+  @OneToMany(() => TableBooking, (booking) => booking.cafe)
+  tableBookings: TableBooking[];
 }

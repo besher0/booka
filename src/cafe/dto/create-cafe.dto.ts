@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import {IsEnum, IsNotEmpty, IsOptional, IsString, IsUrl, Matches, Max, Min} from 'class-validator'
-import { type } from 'src/utils/enums';
+import { type } from 'src/utils/enum/enums';
 export class CreateCafe{
     @IsString()
     @IsNotEmpty()

@@ -4,7 +4,7 @@ import { Controller, Get, Post, Body, Param, Delete, Put, UseInterceptors, Uploa
 import { ProductService } from './products.service';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
-import { ProductType } from 'src/utils/enums';
+import { ProductType } from 'src/utils/enum/enums';
 import { Product } from './product.entity';
 import { FileInterceptor } from '@nestjs/platform-express/multer/interceptors/file.interceptor';
 import { storage } from 'src/utils/cloudinary.storage';

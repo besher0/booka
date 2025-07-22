@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import {  IsEnum, IsNotEmpty, IsOptional, IsString, Length, MaxLength, MinLength } from "class-validator";
-import { Gender } from "src/utils/enums";
+import { Gender } from "src/utils/enum/enums";
 
 export class RegisterDto {
     @IsString()

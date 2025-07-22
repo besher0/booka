@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 // src/product/dto/create-product.dto.ts
 import { IsString, IsNotEmpty, IsNumber, IsUrl, IsOptional, IsEnum, Min } from 'class-validator';
-import { ProductType } from 'src/utils/enums';
+import { ProductType } from 'src/utils/enum/enums';
 
 export class CreateProductDto {
   @IsString()

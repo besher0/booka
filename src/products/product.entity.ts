@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne,OneToMany,  } from 'typeorm';
-import { ProductType } from '../utils/enums';
+import { ProductType } from '../utils/enum/enums';
 import { Cafe } from '../cafe/cafe.entity'; // **استيراد كيان الكافيه**
 import { Love } from '../love/love.entity'; 
 

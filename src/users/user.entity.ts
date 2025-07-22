@@ -1,10 +1,11 @@
 /* eslint-disable prettier/prettier */
 import { Column, Entity, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, OneToMany } from "typeorm";
-import { UserType } from "../utils/enums"; // تأكد من أن هذا المسار صحيح
+import { UserType } from "../utils/enum/enums"; // تأكد من أن هذا المسار صحيح
 import { Exclude } from "class-transformer";
 import { Comment } from '../comments/comment.entity';
 import { Love } from '../love/love.entity'
 import { Device } from '../device/device.entity';
+import { TableBooking } from "src/table-booking/table-booking.entity";
 
 @Entity({ name: 'users' })
 export class User {
@@ -46,4 +47,7 @@ export class User {
 
   @OneToMany(() => Device, (device) => device.user)
   devices: Device[]; 
+
+  @OneToMany(() => TableBooking, (booking) => booking.user)
+  tableBookings: TableBooking[];
 }

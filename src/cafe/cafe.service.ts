@@ -13,7 +13,7 @@ import { Cafe } from "./cafe.entity";
 import { InjectRepository } from "@nestjs/typeorm";
 import { CreateCafe } from "./dto/create-cafe.dto";
 import { UpdateCafe } from "./dto/update-cafe.dto";
-import { type } from "src/utils/enums";
+import { type } from "src/utils/enum/enums";
 import { CafeImage } from '../cafe/gallary.entity'; // أو حسب المسار عندك
 
 @Injectable()

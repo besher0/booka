@@ -19,6 +19,8 @@ import { Device } from './device/device.entity';
 import { DeviceModule } from './device/device.module';
 import { NotificationModule } from './notification/notification.module';
 import { CafeImage } from './cafe/gallary.entity';
+import { TableBookingModule } from './table-booking/table-booking.module';
+import { TableBooking } from './table-booking/table-booking.entity';
 
 @Module({
   imports: [
@@ -26,7 +28,7 @@ import { CafeImage } from './cafe/gallary.entity';
       isGlobal:true,
       envFilePath: `.env.${process.env.NODE_ENV}`
     }),
-    CafesModule,UsersModule,CommentsModule,ProductModule,LoveModule,FirebaseModule,DeviceModule,NotificationModule,
+    CafesModule,UsersModule,CommentsModule,ProductModule,LoveModule,FirebaseModule,DeviceModule,NotificationModule,TableBookingModule,
      TypeOrmModule.forRootAsync({
           inject:[ConfigService],
           useFactory:(config:ConfigService)=>{
@@ -38,10 +40,11 @@ import { CafeImage } from './cafe/gallary.entity';
             port:config.get<number >("DB_PORT"),
             host:'localhost',
             synchronize:true,
-            entities:[Cafe,User,Comment,Product,Love,Device,CafeImage]
+            entities:[Cafe,User,Comment,Product,Love,Device,CafeImage,TableBooking]
             }
           }
     }),
+     TableBookingModule,
 
    
   ],

@@ -4,7 +4,7 @@ import { NotificationService } from './notification.service';
 import { AuthGuard } from '../users/guards/auth.guard'; // جارد المصادقة
 import { CurrentUser } from '../users/decorators/current-user.decorator'; // ديكور الحصول على المستخدم
 import { User } from '../users/user.entity'; // كيان المستخدم
-import { UserType } from 'src/utils/enums';
+import { UserType } from 'src/utils/enum/enums';
 
 // DTOs للرسائل
 class SendNotificationToAllDto {

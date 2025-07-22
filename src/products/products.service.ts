@@ -6,7 +6,7 @@ import { Repository } from 'typeorm';
 import { Product } from './product.entity';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
-import { ProductType } from 'src/utils/enums';
+import { ProductType } from 'src/utils/enum/enums';
 import { Cafe } from '../cafe/cafe.entity'; // **استيراد كيان الكافيه**
 
 @Injectable()

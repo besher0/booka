@@ -8,7 +8,7 @@ import { Request } from "express";
 import { CURRENT_USER_KEY } from "../../utils/constants";
 import { JWTPayloadType } from "../../utils/types";
 import { Reflector } from "@nestjs/core";
-import { UserType } from "../../utils/enums";
+import { UserType } from "../../utils/enum/enums";
 import { UsersService } from "../users.service";
 
 

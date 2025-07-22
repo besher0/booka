@@ -20,7 +20,7 @@ import { AuthRolesGuard } from "./guards/auth-roles.guard";
 import { CurrentUser } from "./decorators/current-user.decorator";
 import { JWTPayloadType } from "src/utils/types";
 import { Roles } from "./decorators/user-role.decorator";
-import { UserType } from "../utils/enums"
+import { UserType } from "../utils/enum/enums"
 import { UpdateUserDto } from "./dtos/update.dto";
 
 @Controller("api/users")
