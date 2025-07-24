@@ -12,7 +12,6 @@ function formatBytes(bytes) {
   const i = Math.floor(Math.log(bytes) / Math.log(k));
   return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
 }
-console.log('استهلاك الذاكرة لعملية Node.js:');
 console.log(`  RSS (Resident Set Size): ${formatBytes(memoryUsage.rss)}`);
     return 'Hello in Booka!';
 
