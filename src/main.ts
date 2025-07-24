@@ -35,8 +35,8 @@ app.enableCors({
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api-docs', app, document); // **http://localhost:3000/api-docs** هو مسار توثيق Swagger
 
-  await app.listen(3000); // المنفذ الذي يعمل عليه تطبيقك
+  await app.listen(10000); // المنفذ الذي يعمل عليه تطبيقك
   console.log(`Application is running on: ${await app.getUrl()}`);
   console.log(`Swagger documentation is available at: ${await app.getUrl()}/api-docs`);
 }
-bootstrap();
+void bootstrap();
